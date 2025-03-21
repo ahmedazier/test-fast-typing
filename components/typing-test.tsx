@@ -9,6 +9,7 @@ import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 import { BarChart3, Trophy, Settings, Keyboard, Clock, BarChart, Flame } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import ThemeSelector from "@/components/theme-selector"
 
 interface TypingTestProps {
   quotes: string[]
@@ -49,7 +50,6 @@ export default function TypingTest({ quotes }: TypingTestProps) {
   const [isStarted, setIsStarted] = useState(false)
   const [currentPosition, setCurrentPosition] = useState(0)
   const [mounted, setMounted] = useState(false)
-  const [showThemeSelector, setShowThemeSelector] = useState(false)
   const [difficulty, setDifficulty] = useState<Difficulty>("medium")
   const [showSettings, setShowSettings] = useState(false)
   const [typingHistory, setTypingHistory] = useState<TypingHistoryEntry[]>([])
@@ -112,16 +112,6 @@ export default function TypingTest({ quotes }: TypingTestProps) {
     top: 0,
     height: 0,
   })
-
-  const themes = [
-    { name: "dark", label: "dark" },
-    { name: "light", label: "light" },
-    { name: "blue", label: "blue" },
-    { name: "red", label: "red" },
-    { name: "yellow", label: "yellow" },
-    { name: "green", label: "green" },
-    { name: "purple", label: "purple" },
-  ]
 
   // Load saved data from localStorage
   useEffect(() => {
@@ -478,11 +468,6 @@ export default function TypingTest({ quotes }: TypingTestProps) {
   // Reset the game
   const resetGame = () => {
     initGame()
-  }
-
-  // Toggle theme selector
-  const toggleThemeSelector = () => {
-    setShowThemeSelector(!showThemeSelector)
   }
 
   // Toggle settings
@@ -892,13 +877,7 @@ export default function TypingTest({ quotes }: TypingTestProps) {
         </AnimatePresence>
 
         {/* Theme Selector */}
-        <ThemeSelector
-          theme={theme}
-          setTheme={setTheme}
-          themes={themes}
-          showThemeSelector={showThemeSelector}
-          toggleThemeSelector={toggleThemeSelector}
-        />
+        <ThemeSelector />
       </div>
     )
   }
@@ -1090,141 +1069,7 @@ export default function TypingTest({ quotes }: TypingTestProps) {
       </Button>
 
       {/* Theme Selector */}
-      <ThemeSelector
-        theme={theme}
-        setTheme={setTheme}
-        themes={themes}
-        showThemeSelector={showThemeSelector}
-        toggleThemeSelector={toggleThemeSelector}
-      />
-    </div>
-  )
-}
-
-// Theme Selector Component
-function ThemeSelector({
-  theme,
-  setTheme,
-  themes,
-  showThemeSelector,
-  toggleThemeSelector,
-}: {
-  theme: string
-  setTheme: (theme: string) => void
-  themes: { name: string; label: string }[]
-  showThemeSelector: boolean
-  toggleThemeSelector: () => void
-}) {
-  return (
-    <div className="fixed top-4 right-4 flex flex-col items-end">
-      <div className="relative">
-        <motion.button
-          onClick={toggleThemeSelector}
-          className={cn(
-            "text-xs uppercase tracking-wider px-2 py-1",
-            theme === "dark"
-              ? "text-neutral-600"
-              : theme === "light"
-                ? "text-neutral-400"
-                : theme === "blue"
-                  ? "text-blue-400"
-                  : theme === "red"
-                    ? "text-red-400"
-                    : theme === "yellow"
-                      ? "text-yellow-500"
-                      : theme === "green"
-                        ? "text-green-400"
-                        : theme === "purple"
-                          ? "text-purple-400"
-                          : "text-neutral-400",
-          )}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {showThemeSelector ? "close" : "theme"}
-        </motion.button>
-
-        <AnimatePresence>
-          {showThemeSelector && (
-            <motion.div
-              initial={{ opacity: 0, x: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, x: 20, filter: "blur(8px)" }}
-              transition={{ duration: 0.2 }}
-              className={cn(
-                "absolute right-0 mt-2 flex flex-col items-end gap-1 p-2 border",
-                theme === "dark"
-                  ? "bg-black border-neutral-800"
-                  : theme === "light"
-                    ? "bg-white border-neutral-200"
-                    : theme === "blue"
-                      ? "bg-blue-50 border-blue-200"
-                      : theme === "red"
-                        ? "bg-red-50 border-red-200"
-                        : theme === "yellow"
-                          ? "bg-yellow-50 border-yellow-200"
-                          : theme === "green"
-                            ? "bg-green-50 border-green-200"
-                            : theme === "purple"
-                              ? "bg-purple-50 border-purple-200"
-                              : "bg-white border-neutral-200",
-              )}
-            >
-              {themes.map((t, index) => (
-                <motion.button
-                  key={t.name}
-                  onClick={() => setTheme(t.name)}
-                  className={cn(
-                    "text-xs uppercase tracking-wider px-2 py-1",
-                    theme === t.name
-                      ? t.name === "dark"
-                        ? "text-white"
-                        : t.name === "light"
-                          ? "text-black"
-                          : t.name === "blue"
-                            ? "text-blue-600"
-                            : t.name === "red"
-                              ? "text-red-600"
-                              : t.name === "yellow"
-                                ? "text-yellow-600"
-                                : t.name === "green"
-                                  ? "text-green-600"
-                                  : t.name === "purple"
-                                    ? "text-purple-600"
-                                    : "text-black"
-                      : theme === "dark"
-                        ? "text-neutral-500"
-                        : theme === "light"
-                          ? "text-neutral-400"
-                          : theme === "blue"
-                            ? "text-blue-300"
-                            : theme === "red"
-                              ? "text-red-300"
-                              : theme === "yellow"
-                                ? "text-yellow-400"
-                                : theme === "green"
-                                  ? "text-green-300"
-                                  : theme === "purple"
-                                    ? "text-purple-300"
-                                    : "text-neutral-400",
-                  )}
-                  initial={{ opacity: 0, x: 20, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, x: 20, filter: "blur(4px)" }}
-                  transition={{
-                    duration: 0.2,
-                    delay: index * 0.05, // Stagger effect
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {t.label}
-                </motion.button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <ThemeSelector />
     </div>
   )
 }
