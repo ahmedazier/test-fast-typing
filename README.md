@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TypeMaster - Modern Typing Test Application
 
-## Getting Started
+![TypeMaster Banner](/placeholder.svg?height=200&width=800)
 
-First, run the development server:
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.0-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.16-0055FF?logo=framer)](https://www.framer.com/motion/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A minimalist, feature-rich typing test application built with Next.js and TypeScript. Test and improve your typing speed and accuracy with a clean, distraction-free interface.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Core Functionality
+- **Real-time WPM Calculation**: See your typing speed update in real-time
+- **Accuracy Tracking**: Monitor your typing precision
+- **Multiple Themes**: Choose from 7 different color themes (dark, light, blue, red, yellow, green, purple)
+- **Responsive Design**: Works on desktop and mobile devices
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Advanced Features
+- **Difficulty Levels**: Select from easy, medium, or hard difficulty settings
+- **Progress Visualization**: Track your progress with a real-time progress bar
+- **Error Heat Map**: Identify which keys you struggle with most
+- **Statistics Dashboard**: View your typing history and performance metrics
+- **Achievement System**: Unlock achievements as you improve
+- **Daily Streaks**: Track consecutive days of practice
+- **Local Storage**: Your progress and settings are saved between sessions
 
-## Learn More
+## 📸 Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+![Typing Test](/placeholder.svg?height=300&width=600)
+![Statistics Dashboard](/placeholder.svg?height=300&width=600)
+![Achievements](/placeholder.svg?height=300&width=600)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Node.js 18.0 or later
+- npm or yarn
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ahmedazier/test-fast-typing.git
+   cd test-fast-typing
